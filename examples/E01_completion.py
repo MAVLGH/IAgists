@@ -1,22 +1,14 @@
-import os
 import datetime
-from openai import OpenAI
-from dotenv import load_dotenv
 
-
+from src.api import client
 from src.data import JSONDataManager
 from src.path import PATH_DB
 
 now =  datetime.datetime.utcnow()
-load_dotenv()
-
 db = JSONDataManager(base_path=PATH_DB)
 
 if __name__ == '__main__':
 
-    client = OpenAI(
-    api_key=os.environ.get("OPENAI_API_KEY"),
-    )
 
     messages = [
         {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
@@ -30,11 +22,11 @@ if __name__ == '__main__':
 
     }
 
-    completion = client.chat.completions.create(
+    response = client.chat.completions.create(
         model=info["model"],
         messages=info["messages"]
         )
 
-    info["content"] = completion.choices[0].message.content
+    info["response"] = response.choices[0].message.content
 
     db.save_info(dict_info=info, now=now)

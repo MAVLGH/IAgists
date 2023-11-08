@@ -8,10 +8,11 @@ class JSONDataManager:
     def __init__(self, base_path):
         self.base_path = base_path
 
-    def save_info(self, dict_info, now=None):
+    def save_info(self, dict_info, now=None, suffix=None):
+        suffix = f"_{suffix}" or ''
         now = now or datetime.datetime.utcnow()
         date_path = now.strftime('%Y-%m')
-        time_filename = now.strftime('%Y-%m-%dT%H:%M:%S') + '.json'
+        time_filename = now.strftime('%Y-%m-%dT%H:%M:%S') + suffix + '.json'
         folder_path = os.path.join(self.base_path, date_path)
         os.makedirs(folder_path, exist_ok=True)
         file_path = os.path.join(folder_path, time_filename)
