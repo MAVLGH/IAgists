@@ -5,7 +5,7 @@ from glob import glob
 from typing import Optional
 
 class JSONDataManager:
-    def __init__(self, base_path='data'):
+    def __init__(self, base_path):
         self.base_path = base_path
 
     def save_info(self, dict_info, now=None):
@@ -50,7 +50,8 @@ class JSONDataManager:
 
 # Ejemplo de cómo usar la clase
 if __name__ == "__main__":
-    manager = JSONDataManager()
+    from src.path import PATH_DB
+    manager = JSONDataManager(base_path=PATH_DB)
     
     # Crear información
     info = {'mensaje': 'Este es un ejemplo de CRUD en JSON'}

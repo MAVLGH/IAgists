@@ -1,17 +1,16 @@
 import os
-import json
 import datetime
 from openai import OpenAI
 from dotenv import load_dotenv
 
 
 from src.data import JSONDataManager
-from src.path import PATH_DATA
+from src.path import PATH_DB
 
 now =  datetime.datetime.utcnow()
 load_dotenv()
 
-db = JSONDataManager(base_path=PATH_DATA)
+db = JSONDataManager(base_path=PATH_DB)
 
 if __name__ == '__main__':
 
