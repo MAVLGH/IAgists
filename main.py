@@ -8,16 +8,15 @@ from dotenv import load_dotenv
 from src.data import JSONDataManager
 from src.path import PATH_DATA
 
+now =  datetime.datetime.utcnow()
+load_dotenv()
+
 db = JSONDataManager(base_path=PATH_DATA)
 
-
 if __name__ == '__main__':
-    now =  datetime.datetime.utcnow()
-    load_dotenv()
-    api_key = os.environ.get("OPENAI_API_KEY")
 
     client = OpenAI(
-    api_key=api_key,
+    api_key=os.environ.get("OPENAI_API_KEY"),
     )
 
     messages = [
