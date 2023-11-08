@@ -29,4 +29,4 @@ if __name__ == '__main__':
 
     info["response"] = response.choices[0].message.content
 
-    db.save_info(dict_info=info, now=now)
+    db.save_info(dict_info=info, now=now, suffix='completion')
